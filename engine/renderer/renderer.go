@@ -8,6 +8,7 @@ import (
 )
 
 type Renderer struct {
+	ebiten.Game
 }
 
 func (r *Renderer) Run() {
@@ -22,7 +23,7 @@ func (r *Renderer) Update() error {
 }
 
 func (r *Renderer) Draw(screen *ebiten.Image) {
-	fmt.Println("Renderering onto screen")
+	fmt.Println("Rendering onto screen")
 }
 
 func (r *Renderer) Layout(w, h int) (int, int) {

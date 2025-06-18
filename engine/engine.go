@@ -19,10 +19,13 @@ type Engine struct {
 }
 
 func New() *Engine {
-	return &Engine{}
+	// initialize all systems
+	return &Engine{
+		Renderer: &renderer.Renderer{},
+	}
 }
 
 func (e *Engine) Run() {
-	fmt.Println("Running engine")
+	fmt.Println("Running Milk2D engine")
 	e.Renderer.Run()
 }
