@@ -8,6 +8,7 @@ import (
 
 type Engine struct {
 	Renderer *renderer.Renderer
+	Window   *renderer.Window
 	// PhysicsWorld  *PhysicsWorld
 	// SceneManager  *SceneManager
 	// Input         *Input
