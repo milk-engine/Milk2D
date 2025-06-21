@@ -11,7 +11,9 @@ import (
 type Vector2 = vector.Vector2
 type Transform = vector.Transform
 type Component = core.Component
+type IComponent = core.IComponent
 type GameObject = core.GameObject
+type IGameObject = core.IGameObject
 
 type Milk2DEngine struct {
 	Renderer *renderer.Renderer
