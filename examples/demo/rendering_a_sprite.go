@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/hajimehoshi/ebiten/v2"
 	milk2d "github.com/milk-engine/Milk2D"
 )
@@ -18,7 +16,7 @@ func main() {
 
 	cow := milk2d.NewGameObject("Cow", *milk2d.NewTransform())
 	cow.AddComponent(sprite)
+	cow.AddToScene("default scene")
 
-	fmt.Printf("%+v", cow)
-	// milk2D.Run()
+	milk2D.Run()
 }

@@ -11,17 +11,19 @@ import (
 )
 
 type Milk2DEngine struct {
-	Renderer    *renderer.Renderer
-	Window      *renderer.Window
-	AssetLoader *assets.AssetsLoader
+	Renderer     *renderer.Renderer
+	Window       *renderer.Window
+	AssetLoader  *assets.AssetsLoader
+	SceneManager *core.ScenesManager
 }
 
 func New() *Milk2DEngine {
 	// initialize all systems
 	return &Milk2DEngine{
-		Renderer:    &renderer.Renderer{},
-		Window:      &renderer.Window{},
-		AssetLoader: &assets.AssetLoader,
+		Renderer:     &renderer.Renderer{SceneManager: core.SceneManager},
+		Window:       &renderer.Window{},
+		AssetLoader:  &assets.AssetLoader,
+		SceneManager: core.SceneManager,
 	}
 }
 

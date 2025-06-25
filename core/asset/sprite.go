@@ -26,6 +26,13 @@ func NewSprite(spriteName string, dest *vector.Vector2, options *ebiten.DrawImag
 	}
 }
 
+func (s *Sprite) Init() {
+	//
+}
+
+func (s *Sprite) Update() {
+	//
+}
 func (s *Sprite) Render(screen *ebiten.Image) {
 	screen.DrawImage(s.Image, s.Options)
 }

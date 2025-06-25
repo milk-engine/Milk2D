@@ -19,6 +19,7 @@ type IGameObject interface {
 	RemoveComponents(component IComponent)
 	GetComponent(component IComponent)
 	GetComponents(component IComponent)
+	AddToScene(sceneName string)
 	Destroy()
 }
 
@@ -30,6 +31,7 @@ type GameObject struct {
 	Transform  *vector.Transform
 	Active     bool
 	Components []IComponent
+	SortIndex  uint8
 }
 
 func NewGameObject(name string, start vector.Transform) *GameObject {
@@ -46,6 +48,7 @@ func NewGameObject(name string, start vector.Transform) *GameObject {
 		Transform:  &start,
 		Active:     true,
 		Components: make([]IComponent, 0),
+		SortIndex:  1,
 	}
 }
 
@@ -112,4 +115,8 @@ func (g *GameObject) GetComponents(c IComponent) []IComponent {
 
 func (g *GameObject) Destroy() {
 	g.Active = false
+}
+
+func (g *GameObject) AddToScene(sceneName string) {
+	SceneManager.AddGameObject(sceneName, g)
 }
