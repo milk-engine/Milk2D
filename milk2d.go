@@ -3,7 +3,6 @@ package milk2d
 import (
 	"fmt"
 
-	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/milk-engine/Milk2D/core"
 	assets "github.com/milk-engine/Milk2D/core/asset"
 	"github.com/milk-engine/Milk2D/core/renderer"
@@ -44,6 +43,6 @@ func NewGameObject(name string, startPosition *Vector2) *GameObject {
 type Sprite = assets.Sprite
 type SpriteDestination = assets.SpriteDestination
 
-func NewSprite(spriteName string, destination *assets.SpriteDestination, options *ebiten.DrawImageOptions) *Sprite {
-	return assets.NewSprite(spriteName, destination, options)
+func NewSprite(spriteName string, destination *assets.SpriteDestination) *Sprite {
+	return assets.NewSprite(spriteName, destination)
 }

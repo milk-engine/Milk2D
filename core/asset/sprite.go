@@ -27,7 +27,7 @@ type Sprite struct {
 	SubImage    *ebiten.Image
 }
 
-func NewSprite(spriteName string, destination *SpriteDestination, options *ebiten.DrawImageOptions) *Sprite {
+func NewSprite(spriteName string, destination *SpriteDestination) *Sprite {
 	src := AssetLoader.GetAsset(spriteName).(*ebiten.Image)
 	rect := image.Rect(
 		destination.X,
@@ -41,7 +41,7 @@ func NewSprite(spriteName string, destination *SpriteDestination, options *ebite
 
 	return &Sprite{
 		Parent:    nil,
-		Options:   options,
+		Options:   &ebiten.DrawImageOptions{},
 		Transform: &vector.Transform{},
 		SubRect:   &rect,
 		SubImage:  subImg,
