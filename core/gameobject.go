@@ -34,18 +34,23 @@ type GameObject struct {
 	SortIndex  uint8
 }
 
-func NewGameObject(name string, start vector.Transform) *GameObject {
+func NewGameObject(name string, startPosition *vector.Vector2) *GameObject {
 	randomId, err := uuid.NewRandom()
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	transform := vector.Transform{
+		Position: *startPosition,
+		Scale: *vector.One(),
+		Rotation: 0.0,
+	}
 	return &GameObject{
 		Id:         randomId,
 		Parent:     nil,
 		Name:       name,
-		Transform:  &start,
+		Transform:  &transform,
 		Active:     true,
 		Components: make([]IComponent, 0),
 		SortIndex:  1,
@@ -75,6 +80,7 @@ func (g *GameObject) Render(screen *ebiten.Image) {
 }
 
 func (g *GameObject) AddComponent(c IComponent) {
+	c.SetParent(g)
 	g.Components = append(g.Components, c)
 }
 

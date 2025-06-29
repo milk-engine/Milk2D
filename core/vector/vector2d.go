@@ -6,56 +6,63 @@ import (
 )
 
 type Vector2 struct {
-	x, y float32
+	X, Y float32
 }
 
-func NewVector2(x, y float32) *Vector2 {
+func Zero() *Vector2{
 	return &Vector2{
-		x: x,
-		y: y,
+		X: 0,
+		Y: 0,
+	}
+}
+
+func One() *Vector2{
+	return &Vector2{
+		X: 1,
+		Y: 1,
 	}
 }
 
 func (v *Vector2) Set(x, y float32) {
-	v.x = x
-	v.y = y
+	v.X = x
+	v.Y = y
 }
 
 func (v *Vector2) Add(nv Vector2) {
-	v.x += nv.x
-	v.y += nv.y
+	v.X += nv.X
+	v.Y += nv.Y
 }
 
 func (v *Vector2) Subtract(nv Vector2) {
-	v.x -= nv.x
-	v.y -= nv.y
+	v.X -= nv.X
+	v.Y -= nv.Y
 }
 
 func (v *Vector2) Multiply(scalar float32) {
-	v.x *= scalar
-	v.y *= scalar
+	v.X *= scalar
+	v.Y *= scalar
 }
 
 func (v *Vector2) Divide(scalar float32) {
-	v.x /= scalar
-	v.y /= scalar
+	v.X /= scalar
+	v.Y /= scalar
 }
 
 func (v *Vector2) Negate() {
-	v.x = -v.x
-	v.y = -v.y
+	v.X = -v.X
+	v.Y = -v.Y
 }
 
 func (v *Vector2) Normalize() {
-	length := float32(math.Hypot(float64(v.x), float64(v.y)))
+	length := float32(math.Hypot(float64(v.X), float64(v.Y)))
 	if length != 0 {
-		v.x /= length
-		v.y /= length
+		v.X /= length
+		v.Y /= length
 	}
 }
 
 func (v *Vector2) Dot(other Vector2) float32 {
-	return v.x*other.x + v.y*other.y
+	return v.X*other.X + v.Y*other.Y
 }
 
 func (v *Vector2) Clamp(max float32) {
@@ -63,14 +70,14 @@ func (v *Vector2) Clamp(max float32) {
 	maxSq := max * max
 	if lengthSq > maxSq {
 		length := float32(math.Sqrt(float64(lengthSq)))
-		v.x = (v.x / length) * max
-		v.y = (v.y / length) * max
+		v.X = (v.X / length) * max
+		v.Y = (v.Y / length) * max
 	}
 }
 
 func (v *Vector2) Lerp(target Vector2, t float32) {
-	v.x += (target.x - v.x) * t
-	v.y += (target.y - v.y) * t
+	v.X += (target.X - v.X) * t
+	v.Y += (target.Y - v.Y) * t
 }
 func (v *Vector2) AngleTo(other Vector2) float32 {
 	dot := v.Dot(other)
@@ -89,24 +96,24 @@ func (v *Vector2) AngleTo(other Vector2) float32 {
 }
 
 func (v *Vector2) DistanceTo(other Vector2) float32 {
-	dx := v.x - other.x
-	dy := v.y - other.y
+	dx := v.X - other.X
+	dy := v.Y - other.Y
 	return float32(math.Hypot(float64(dx), float64(dy)))
 }
 
 func (v *Vector2) DistanceToSq(other Vector2) float32 {
-	dx := v.x - other.x
-	dy := v.y - other.y
+	dx := v.X - other.X
+	dy := v.Y - other.Y
 	return dx*dx + dy*dy
 }
 
 func (v *Vector2) IsZero() bool {
-	return v.x == 0 && v.y == 0
+	return v.X == 0 && v.Y == 0
 }
 
 func (v *Vector2) Equals(other Vector2, epsilon float32) bool {
-	dx := v.x - other.x
-	dy := v.y - other.y
+	dx := v.X - other.X
+	dy := v.Y - other.Y
 	return (dx*dx + dy*dy) < epsilon*epsilon
 }
 
@@ -116,13 +123,13 @@ func (v *Vector2) SetLength(length float32) {
 }
 
 func (v *Vector2) Length() float32 {
-	return float32(math.Hypot(float64(v.x), float64(v.y)))
+	return float32(math.Hypot(float64(v.X), float64(v.Y)))
 }
 
 func (v *Vector2) LengthSq() float32 {
-	return v.x*v.x + v.y*v.y
+	return v.X*v.X + v.Y*v.Y
 }
 
 func (v *Vector2) String() string {
-	return fmt.Sprintf("(%f %f)", v.x, v.y)
+	return fmt.Sprintf("(%f %f)", v.X, v.Y)
 }

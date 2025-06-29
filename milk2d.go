@@ -11,19 +11,19 @@ import (
 )
 
 type Milk2DEngine struct {
+	SceneManager *core.ScenesManager
 	Renderer     *renderer.Renderer
 	Window       *renderer.Window
 	AssetLoader  *assets.AssetsLoader
-	SceneManager *core.ScenesManager
 }
 
 func New() *Milk2DEngine {
 	// initialize all systems
 	return &Milk2DEngine{
+		SceneManager: core.SceneManager,
 		Renderer:     &renderer.Renderer{SceneManager: core.SceneManager},
 		Window:       &renderer.Window{},
 		AssetLoader:  &assets.AssetLoader,
-		SceneManager: core.SceneManager,
 	}
 }
 
@@ -33,26 +33,17 @@ func (engine *Milk2DEngine) Run() {
 }
 
 type Vector2 = vector.Vector2
-
-func NewVector2(x, y float32) *Vector2 {
-	return vector.NewVector2(x, y)
-}
-
 type Transform = vector.Transform
-
-func NewTransform() *Transform {
-	return vector.NewTransform()
-}
-
 type Component = core.Component
 type GameObject = core.GameObject
 
-func NewGameObject(name string, start Transform) *GameObject {
-	return core.NewGameObject(name, start)
+func NewGameObject(name string, startPosition *Vector2) *GameObject {
+	return core.NewGameObject(name, startPosition)
 }
 
 type Sprite = assets.Sprite
+type SpriteDestination = assets.SpriteDestination
 
-func NewSprite(spriteName string, dest *Vector2, options *ebiten.DrawImageOptions) *Sprite {
-	return assets.NewSprite(spriteName, dest, options)
+func NewSprite(spriteName string, destination *assets.SpriteDestination, options *ebiten.DrawImageOptions) *Sprite {
+	return assets.NewSprite(spriteName, destination, options)
 }
